@@ -31,7 +31,6 @@ def evaluateStaticLinkPrediction(digraph, train_digraph, test_digraph, graph_emb
         nx.relabel_nodes(test_digraph, nodeListMap, copy=False)
 
 
-    print "Costruisco l'embedding"
     X, _ = graph_embedding.learn_embedding(graph=train_digraph, no_python=no_python)    # Costruisce l'Embedding del Grafo
 
     node_l = None

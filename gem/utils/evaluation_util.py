@@ -20,18 +20,13 @@ def getRandomEdgePairs(node_num, sample_ratio=0.01, is_undirected=True):
 
 
 def getEdgeListFromAdjMtx(adj, threshold=0.0, is_undirected=True, edge_pairs=None):
-    br = open("predicted_edge_list.el", "w")
     result = []
     node_num = adj.shape[0]
     if edge_pairs:
-        print "if"
         for (st, ed) in edge_pairs:
             if adj[st, ed] >= threshold:
-                #result.append((st, ed, adj[st, ed]))
-                print (st, ed, adj[st,ed])
-                br.write(repr(st) + '\t' + repr(ed) + '\t' + repr(adj[st, ed]) + '\n')
+                result.append((st, ed, adj[st, ed]))
     else:
-        print "else"
         for i in range(node_num):
             for j in range(node_num):
                 if(j == i):
@@ -39,11 +34,7 @@ def getEdgeListFromAdjMtx(adj, threshold=0.0, is_undirected=True, edge_pairs=Non
                 if(is_undirected and i >= j):
                     continue
                 if adj[i, j] > threshold:
-                    #result.append((i, j, adj[i, j]))
-                    print (i,j,adj[i,j])
-                    br.write(repr(i) + '\t' + repr(j) + '\t' + repr(adj[i,j]) + '\n')
-    del adj
-    br.close()
+                    result.append((i, j, adj[i, j]))
     return result
 
 
